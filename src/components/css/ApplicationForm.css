@@ -1,0 +1,19 @@
+.application-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: justify;
+    align-items: justify;
+}
+
+.form-header {
+    margin-top: 0;
+    font-size: 4vmax;
+    color: #5D3FD3;
+}
+
+.application-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
