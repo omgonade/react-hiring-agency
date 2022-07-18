@@ -67,8 +67,7 @@ const PostalDetails = (props) => {
                             value={values.pincode}
                             onChange={handleChange('Pincode')}
                         /><br />
-                        {/* <MuiPhoneNumber defaultCountry={'in'} onChange={handleOnChange} />,
-                        document.getElementById('root') */}
+                        
                         
                         <PhoneInput
                             country={'us'}
