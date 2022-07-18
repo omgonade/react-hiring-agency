@@ -34,6 +34,7 @@ const PersonalDetails = (props) => {
             >
                 <Paper elevation={12} sx={{ paddingRight: 20, paddingLeft: 20, paddingTop: 5, paddingBottom: 10, backgroundColor: '#E6E6FA' }}>
                     <div className='application-form'>
+                        {/* <h1>{process.env.REACT_APP_API_TOKEN}</h1> */}
                         <h2 className='form-header'>Personal Details</h2>
                         <TextField
                             id="outlined-helperText"

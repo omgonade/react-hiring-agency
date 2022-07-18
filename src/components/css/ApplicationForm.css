@@ -17,3 +17,21 @@
     justify-content: center;
     align-items: center;
 }
+.address{
+    border: 0.1vmax solid #b8b8c7;
+    padding: 1.1vmax;
+}
+.address::placeholder,.address{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    background-color:transparent;
+    border-radius: 0.25vmax;
+}
+.address:hover{
+    border:0.1vmax solid black;
+}
+.address:focus{
+    outline: none !important;
+    border:0.18vmax solid #1976d2;
+    
+}
