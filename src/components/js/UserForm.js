@@ -3,6 +3,7 @@ import PersonalDetails from './PersonalDetails';
 import PostalDetails from './PostalDetails';
 import Confirm from './Confirm';
 import Success from './Success';
+import Education from './Education';
 import { useState } from "react";
 
 const UserForm = (props) => {
@@ -58,6 +59,15 @@ const UserForm = (props) => {
                 />
             );
         case 3:
+            return(
+                <Education
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleChange}
+                    values={values}
+                />
+            );
+        case 4:
             return (
                 <Confirm
                     nextStep={nextStep}
@@ -65,7 +75,7 @@ const UserForm = (props) => {
                     values={values}
                 />
             );
-        case 4:
+        case 5:
             return <Success />;
         default:
             (console.log('This is a multi-step form built with React.'))

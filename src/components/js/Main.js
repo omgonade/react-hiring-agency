@@ -3,14 +3,14 @@ import ApplicationForm from './ApplicationForm';
 import { useState } from "react";
 
 const Main = () => {
-    const [advtNum, setAdvtNum] = useState();
-    const handleAdvtSelectChange = (event) => {
-        setAdvtNum(event.target.value);
+    const [post, setPost] = useState();
+    const handlepostApplyChange = (event) => {
+        setPost(event.target.value);
     };
-    const [step, setStep] = useState(1);
-    return (
+    const [step,setStep]=useState(1);
+    return(
         <div>
-            <ApplicationForm advtNum={advtNum} handleAdvtSelectChange={handleAdvtSelectChange} step={step} setStep={setStep} />
+            <ApplicationForm post={post} handlepostApplyChange={handlepostApplyChange} step={step} setStep={setStep}/>
         </div>
     )
 }

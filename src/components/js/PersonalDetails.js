@@ -1,26 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import '../css/ApplicationForm.css';
 import Button from '@mui/material/Button';
-
+import DOB from './DOB';
 const PersonalDetails = (props) => {
     let values = props.values;
     let handleChange = props.handleChange;
     let nextStep = props.nextStep;
-    let maxDate = props.maxDate;
-    let dateOfBirth = props.dateOfBirth;
-    let handleDateChange = props.handleDateChange;
+    const [selectedDate, handleDateChange] = useState(new Date());
     return (
         <div className="application-form-container">
             <Box
@@ -50,18 +45,7 @@ const PersonalDetails = (props) => {
                             onChange={handleChange('fatherName')}
                         />
                         <br />
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack spacing={3} >
-                                <DesktopDatePicker
-                                    maxDate={maxDate}
-                                    label="Date of Birth"
-                                    inputFormat="MM/dd/yyyy"
-                                    value={dateOfBirth}
-                                    onChange={handleDateChange(dateOfBirth)}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </Stack>
-                        </LocalizationProvider>
+                        <DOB/>
                         <br />
                         <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>

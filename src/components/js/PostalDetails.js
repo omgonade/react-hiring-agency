@@ -19,10 +19,10 @@ const PostalDetails = (props) => {
     let handleChange = props.handleChange;
     let nextStep = props.nextStep;
     let prevStep = props.prevStep;
-    const [phone,setPhone]=useState();
+    const [phone, setPhone] = useState();
     function handleOnChange(value) {
         setPhone(value)
-      }
+    }
     return (
         <div className="application-form-container">
             <Box
@@ -37,13 +37,20 @@ const PostalDetails = (props) => {
                 <Paper elevation={12} sx={{ paddingRight: 20, paddingLeft: 20, paddingTop: 5, paddingBottom: 10, backgroundColor: '#E6E6FA' }}>
                     <div className='application-form'>
                         <h2 className='form-header'>Postal Address</h2>
-                        <textarea placeholder='Enter your address' className='address' rows='4'></textarea>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Enter your address"
+                            multiline
+                            maxRows={4}
+                            value={values.address}
+                            onChange={handleChange.address}
+                        />
                         <br />
                         <TextField
                             id="outlined-helperText"
                             label="District"
-                            value={values.name}
-                            onChange={handleChange('name')}
+                            value={values.district}
+                            onChange={handleChange('district')}
                         /><br />
 
                         <FormControl sx={{ minWidth: 400 }}>
@@ -67,13 +74,13 @@ const PostalDetails = (props) => {
                             value={values.pincode}
                             onChange={handleChange('Pincode')}
                         /><br />
-                        
-                        
+
+
                         <PhoneInput
-                            country={'us'}
+                            country={'in'}
                             value={phone}
                             onChange={handleOnChange}
-                        /><br/>
+                        /><br />
 
                         <Button sx={{
                             color: "failure"
