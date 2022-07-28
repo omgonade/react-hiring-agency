@@ -108,7 +108,7 @@ const PersonalDetails = (props) => {
                                         country !== undefined ?
                                         country.map((ctr, index) => {
                                             return (
-                                                <MenuItem key={index} value={ctr.id}>{ctr.name}</MenuItem>
+                                                <MenuItem key={index} value={ctr.isoCode}>{ctr.name}</MenuItem>
                                             )
                                         })
                                         : "No Country"
