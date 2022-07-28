@@ -14,7 +14,6 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Year from './Year';
 import DeleteIcon from '@mui/icons-material/Delete';
-import UGPG from './UGPG';
 const Education = (props) => {
     let values = props.values;
     let handleChange = props.handleChange;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -12,7 +12,7 @@ import { FormControl } from '@mui/material';
 import MuiPhoneNumber from 'material-ui-phone-number';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import { TransgenderTwoTone } from '@mui/icons-material';
+
 
 const PostalDetails = (props) => {
     let values = props.values;
@@ -22,6 +22,33 @@ const PostalDetails = (props) => {
     const [phone, setPhone] = useState();
     function handleOnChange(value) {
         setPhone(value)
+    }
+    // const [country, setCountry] = useState([]);
+    // let Country=require('country-state-city').Country;
+    // const countries=Country.getAllCountries();
+    // useEffect(() => {
+    //     setCountry(countries);
+    // },[])
+    const [country, setCountry] = useState([]);
+    const [state, setState] = useState([]);
+    const [city, setCity] = useState([]);
+    const Country = require('country-state-city').Country;
+    const State=require('country-state-city').State;
+    const City=require('country-state-city').City;
+    const countries = Country.getAllCountries();
+    const states=State.getAllStates();
+    const cities=City.getAllCities();
+    useEffect(() => {
+        setCountry(countries);
+    }, [])
+
+    const handleCountry=(id)=>{
+        const dt= states.filter(x=>x.countryId===id);
+        setState(dt);
+    }
+    const handleState=(id)=>{
+        const dt=cities.filter(x=> x.stateId===id);
+        setCity(dt);
     }
     return (
         <div className="application-form-container">
@@ -46,27 +73,68 @@ const PostalDetails = (props) => {
                             onChange={handleChange.address}
                         />
                         <br />
-                        <TextField
-                            id="outlined-helperText"
-                            label="District"
-                            value={values.district}
-                            onChange={handleChange('district')}
-                        /><br />
+                        <FormControl sx={{ minWidth: 400 }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Country</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="ddlCountry"
+                                onChange={(e) => handleCountry(e.target.value)}                                
+                                value={country}
+                                autoWidth
+                                label="Country"
+                            >                                
+                                {
+                                    country&& 
+                                    country !==undefined ?
+                                    country.map((ctr,index)=>{
+                                        return(
+                                            <MenuItem key={index} value={ctr.id}>{ctr.name}</MenuItem>
+                                        )
+                                    })
+                                    :"No Country"
+                                }
+                            </Select>
+                        </FormControl><br />
 
                         <FormControl sx={{ minWidth: 400 }}>
                             <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>
                             <Select
                                 labelId="demo-simple-select-autowidth-label"
-                                id="demo-simple-select-autowidth"
-                                value={props.advtNum}
-                                onChange={props.handleAdvtSelectChange}
+                                id="ddlStates"
+                                value={props.state}
+                                onChange={(e) => handleState(e.target.value)}
                                 autoWidth
                                 label="State"
                             >
-                                <MenuItem value={'UP'}>Uttar Pradesh</MenuItem>
-                                <MenuItem value={'MH'}>Maharashtra</MenuItem>
+                                <MenuItem> select state</MenuItem>
+                                {
+                                    state && 
+                                    state !== undefined ?
+                                    state.map((ctr,index) => {
+                                        return(
+                                            <option key={index} value={ctr.id}>{ctr.name}</option>
+                                        )
+                                    })
+                                    :"No State"
+                                }
+                                
+                            </Select>
+                        </FormControl><br/>
+                        
+                        <FormControl sx={{ minWidth: 400 }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">City</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={props.City}
+                                onChange={props.handleCityChange}
+                                autoWidth
+                                label="City"
+                            >
+                                
                             </Select>
                         </FormControl><br />
+
                         <TextField
                             id="outlined-helperText"
 

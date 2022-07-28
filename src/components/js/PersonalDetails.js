@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -11,11 +11,30 @@ import FormLabel from '@mui/material/FormLabel';
 import '../css/ApplicationForm.css';
 import Button from '@mui/material/Button';
 import DOB from './DOB';
+import Select from '@mui/material/Select';
+import { Country, State, City } from 'country-state-city';
+import InputLabel from '@mui/material/InputLabel'
+import { MenuItem } from '@mui/material';
 const PersonalDetails = (props) => {
     let values = props.values;
     let handleChange = props.handleChange;
     let nextStep = props.nextStep;
     const [selectedDate, handleDateChange] = useState(new Date());
+    const [country, setCountry] = useState([]);
+    const [state, setState] = useState([]);
+    const [city, setCity] = useState([]);
+    let Country = require('country-state-city').Country;
+    let State=require('country-state-city').State;
+    const countries = Country.getAllCountries();
+    const states=State.getAllStates();
+    useEffect(() => {
+        setCountry(countries);
+    }, [])
+
+    const handleCountry=(id)=>{
+        const dt= states.filter(x=>x.countryId===id);
+        setState(dt);
+    }
     return (
         <div className="application-form-container">
             <Box
@@ -45,7 +64,7 @@ const PersonalDetails = (props) => {
                             onChange={handleChange('fatherName')}
                         />
                         <br />
-                        <DOB/>
+                        <DOB />
                         <br />
                         <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
@@ -73,13 +92,30 @@ const PersonalDetails = (props) => {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <TextField
-                            id="outlined-helperText"
-                            label="Nationality"
-                            value={values.nationality}
-                            onChange={handleChange('nationality')}
-                        />
-                        <br />
+                        <FormControl sx={{ minWidth: 400 }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Nationality</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="ddlCountry"
+                                value={props.nation}
+                                onChange={(e)=>handleCountry(e.target.value)}
+                                autoWidth
+                                label="Nationality"
+                            >
+                                <MenuItem value="0">Select Country</MenuItem>
+                                {
+                                    country &&
+                                        country !== undefined ?
+                                        country.map((ctr, index) => {
+                                            return (
+                                                <MenuItem key={index} value={ctr.id}>{ctr.name}</MenuItem>
+                                            )
+                                        })
+                                        : "No Country"
+                                }
+                            </Select>
+                        </FormControl><br />
+
                         <Button sx={{
                             backgroundColor: '#5D3FD3', '&:hover': {
                                 backgroundColor: '#1976D2',

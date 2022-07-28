@@ -4,13 +4,17 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Stack from '@mui/material/Stack';
-
+import { useEffect } from 'react';
 function DOB(props) {
 
   let minAge = new Date();
   let MinAge = 18;
   minAge.setFullYear(minAge.getFullYear() - MinAge);
   const [value, setValue] = React.useState(minAge);
+  function onChangeHandler(newValue) {
+    setValue(newValue);
+    props.localStorage.setItem('dob', JSON.stringify(value))    
+  }
   
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -21,16 +25,15 @@ function DOB(props) {
           openTo="year"
           views={['year', 'month', 'day']}
           value={value}
-          onChange={(newValue) => {
-            setValue(newValue);            
-          }}                   
-          renderInput={(params) => <TextField {...params} />}
-          maxDate={minAge}
+          onChange={onChangeHandler}
+          renderInput={(props) => <TextField {...props} />}
+          maxDate={minAge}          
           
-        />        
+        />
       </Stack>
       
     </LocalizationProvider>
+    
   )
 }
 export default DOB;
