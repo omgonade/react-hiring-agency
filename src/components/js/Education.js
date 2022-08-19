@@ -20,7 +20,22 @@ const Education = (props) => {
     let nextStep = props.nextStep;
     let prevStep = props.prevStep;
     const [selectedDate, handleDateChange] = useState(new Date());
-    
+    const [inputList, setinputList] = useState([{ degree: '', marks3: '', university: '', PassingYear: '', subject: '' }]);
+    const handleinputchange = (e, index) => {
+        const { degreeN, value } = e.target;
+        const list = [...inputList];
+        list[index][degreeN] = value;
+        setinputList(list);
+    }
+
+    const handleremove = index => {
+        const list = [...inputList];
+        list.splice(index, 1);
+        setinputList(list);
+    }
+    const handleaddclick = () => {
+        setinputList([...inputList, { degree: '', marks3: '', university: '', PassingYear: '', subject: '' }]);
+    }
 
     return (
         <div className="application-form-container">
@@ -100,15 +115,68 @@ const Education = (props) => {
                             type="file"
                         /><br />
                         <h3>UG/PG</h3>
-                        <Fab color="primary" aria-label="add">
-                            <AddIcon
-                                // onClick={Addon}
-                            />
-                        </Fab><br />
-                        <Fab color="primary" aria-label="add">
-                            <DeleteIcon
-                            />
-                        </Fab><br />
+                        {
+                            inputList.map((x, i) => {
+                                return (
+                                    <>
+                                        <TextField
+                                            id="outlined-helperText"
+                                            label="Degree"
+                                            value={values.degree}
+                                            onChange={e => handleinputchange(e, i)}
+                                        /><br />
+                                        {/* <Year /><br /> */}
+                                        <TextField
+                                            type='number'
+                                            InputProps={{
+                                                inputProps: {
+                                                    max: 100, min: 40
+                                                }
+                                            }}
+                                            id="outlined-helperText"
+                                            label="%age of marks"
+                                            value={values.marks3}
+                                            onChange={e => handleinputchange(e, i)}
+                                        /><br />
+                                        <TextField
+                                            id="outlined-helperText"
+                                            label="University/Institute"
+                                            value={values.university}
+                                            onChange={e => handleinputchange(e, i)}
+                                        />
+                                        <br />
+                                        <Year /><br />
+                                        <TextField
+                                            id="outlined-helperText"
+                                            label="Subject"
+                                            value={values.subject2}
+                                            onChange={e => handleinputchange(e, i)}
+                                        /><br />
+                                        <input
+                                            className='choose'
+                                            accept="image/*"
+                                            type="file"
+                                        /><br />
+                                        <div>
+                                            {
+                                                inputList.length -1=== i && i!==0 &&
+                                                <DeleteIcon onClick={() => handleremove(i)} />
+                                            }
+
+                                            {inputList.length - 1 === i &&
+                                                <AddIcon
+                                                    onClick={handleaddclick}
+                                                />}
+
+                                        </div>
+
+
+
+                                    </>
+                                )
+                            })
+                        }
+
                         <Button sx={{
                             color: "failure"
                         }} variant="contained" size="large" onClick={(event) => {

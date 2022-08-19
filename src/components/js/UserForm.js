@@ -4,6 +4,7 @@ import PostalDetails from './PostalDetails';
 import Confirm from './Confirm';
 import Success from './Success';
 import Education from './Education';
+import WorkExperience from './workExperience';
 import { useState } from "react";
 
 const UserForm = (props) => {
@@ -67,6 +68,14 @@ const UserForm = (props) => {
                     values={values}
                 />
             );
+        // case 4:
+        //     return(
+        //         <WorkExperience
+        //             nextStep={nextStep}
+        //             prevStep={prevStep}
+        //             values={values}
+        //         />
+        //     );
         case 4:
             return (
                 <Confirm
