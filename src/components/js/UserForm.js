@@ -68,14 +68,6 @@ const UserForm = (props) => {
                     values={values}
                 />
             );
-        // case 4:
-        //     return(
-        //         <WorkExperience
-        //             nextStep={nextStep}
-        //             prevStep={prevStep}
-        //             values={values}
-        //         />
-        //     );
         case 4:
             return (
                 <Confirm
