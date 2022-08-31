@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SvgIcon from '@mui/material/SvgIcon';
 import { Link } from "react-router-dom";
 
-const pages = ['Apply Now', 'Contact Us', 'About Us', 'Privacy Policy', 'Terms & Conditions'];
+const pages = ['Apply Now', 'Contact Us', 'About Us', 'Privacy Policy', 'Terms and Conditions'];
 
 
 function HomeIcon(props) {
@@ -91,7 +91,11 @@ const NavigationMenu = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography textAlign="center">
+                                        {/* <Link to={`/${page}`}> */}
+                                        {page}
+                                        {/* </Link> */}
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -121,7 +125,9 @@ const NavigationMenu = () => {
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                <Link style={{textDecoration:'none',color:'white'}} to={`/${page}`}>
+                                    {page}
+                                </Link>
                             </Button>
                         ))}
                     </Box>
