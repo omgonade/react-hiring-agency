@@ -3,6 +3,8 @@ import React from 'react';
 
 export const ApplyNow = () => {
   return (
-    <div>ApplyNow</div>
+    <div>
+      <h2>ApplyNow</h2>
+      </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 // import ApplicationForm from '../css/ApplicationForm.css';
-export const Policy = () => {
+export const TermsCondition = () => {
   return (
-    <div>Policy</div>
+    <div><h2>Terms & Condition</h2></div>
   )
 }
